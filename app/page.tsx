@@ -2,7 +2,7 @@ import Hero from './components/landing-page/hero'
 
 export default function Home() {
   return (
-    <div className='border max-w-7xl mx-auto'>
+    <div className='max-w-7xl mx-auto'>
       <Hero />
       {/* <Header />
       <Hero />
