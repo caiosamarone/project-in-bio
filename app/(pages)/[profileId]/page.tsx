@@ -2,7 +2,10 @@ import ProjectCard from '@/app/components/common/project-card'
 import TotalVisits from '@/app/components/common/total-visits'
 import UserCard from '@/app/components/common/user-card'
 import { auth } from '@/app/lib/auth'
-import { getProfileData } from '@/app/server/get-profile-data'
+import {
+  getProfileData,
+  getProfileProjects,
+} from '@/app/server/get-profile-data'
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -21,6 +24,9 @@ export default async function ProfilePage({
 
   const session = await auth()
 
+  const projects = await getProfileProjects(profileData.userId)
+  console.log('projects', projects)
+
   const isOwner = profileData.userId === session?.user?.id
 
   return (
@@ -37,11 +43,14 @@ export default async function ProfilePage({
         <UserCard />
       </div>
       <div className='w-full flex justify-center content-start gap-4 flex-wrap overflow-y-auto'>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            isOwner={isOwner}
+            img={`https://res.cloudinary.com/derq27tar/image/upload/v1747514883/${project.imagePath}`}
+          />
+        ))}
         {isOwner && <NewProject profileId={profileData.userId} />}
       </div>
       <div className='absolute bottom-4 right-0 left-0 w-min mx-auto'>
