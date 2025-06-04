@@ -23,11 +23,7 @@ export async function createProject(formData: FormData) {
   const base64 = buffer.toString('base64')
   const dataUri = `data:image/png;base64,${base64}`
 
-  cloudinary.config({
-    cloud_name: 'derq27tar',
-    api_key: '371614867556781',
-    api_secret: 'Sphj0jY1KQ8S6mn6FZHnuv7cxQM',
-  })
+  cloudinary.config()
 
   let imagePath = ''
   await cloudinary.uploader

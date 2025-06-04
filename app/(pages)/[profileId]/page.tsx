@@ -1,12 +1,12 @@
 import ProjectCard from '@/app/components/common/project-card'
 import TotalVisits from '@/app/components/common/total-visits'
-import UserCard from '@/app/components/common/user-card'
+import UserCard from '@/app/components/common/user-card/user-card'
 import { auth } from '@/app/lib/auth'
 import {
   getProfileData,
   getProfileProjects,
 } from '@/app/server/get-profile-data'
-import { Plus } from 'lucide-react'
+
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import NewProject from './components/new-project'

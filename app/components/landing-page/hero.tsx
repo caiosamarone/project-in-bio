@@ -1,5 +1,5 @@
 import TotalVisits from '../common/total-visits'
-import UserCard from '../common/user-card'
+import UserCard from '../common/user-card/user-card'
 import Button from '../ui/button'
 import TextInput from '../ui/text-input'
 
