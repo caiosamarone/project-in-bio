@@ -1,9 +1,10 @@
-import { Github, Instagram, Linkedin, Twitter, Plus } from 'lucide-react'
+import { Github, Instagram, Linkedin, Twitter } from 'lucide-react'
 import Button from '../../ui/button'
-import SocialMediaButton from '../social-media-button'
+
 import EditSocialLinks from './edit-social-links'
 import Link from 'next/link'
 import { ProfileData } from '@/app/server/get-profile-data'
+import AddCustomLink from './add-custom-link'
 
 const icons = [Github, Instagram, Linkedin, Twitter]
 
@@ -69,22 +70,41 @@ export default function UserCard({
             </Link>
           )}
 
-          {/* {icons.map((Icon, index) => (
-            <SocialMediaButton key={index}>
-              <Icon size={20} />
-            </SocialMediaButton>
-          ))} */}
           <EditSocialLinks socialMedias={profileData?.socialMedias} />
         </div>
       </div>
       <div className='flex flex-col gap-3 w-full h-[172px]'>
         <div className='w-full flex flex-col items-center gap-3'>
-          <Button> Template SaaS - Compre agora</Button>
-          <button>
-            <Plus />
-          </button>
+          {profileData?.link1 && (
+            <Link
+              href={profileData.link1.url}
+              target='blank'
+              className='w-full'
+            >
+              <Button className='w-full'> {profileData.link1.title}</Button>
+            </Link>
+          )}
+          {profileData?.link2 && (
+            <Link
+              href={profileData.link2.url}
+              target='blank'
+              className='w-full'
+            >
+              <Button className='w-full'> {profileData.link2.title}</Button>
+            </Link>
+          )}
+          {profileData?.link3 && (
+            <Link
+              href={profileData.link3.url}
+              target='blank'
+              className='w-full'
+            >
+              <Button className='w-full'> {profileData.link3.title}</Button>
+            </Link>
+          )}
         </div>
       </div>
+      <AddCustomLink />
     </div>
   )
 }

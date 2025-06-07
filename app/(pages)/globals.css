@@ -14,3 +14,8 @@
   --color-accent-green: #87bb20;
   --color-accent-pink: #b5446b;
 }
+
+
+button {
+  cursor: pointer;
+}
