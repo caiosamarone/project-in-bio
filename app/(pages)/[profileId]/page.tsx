@@ -25,7 +25,6 @@ export default async function ProfilePage({
   const session = await auth()
 
   const projects = await getProfileProjects(profileData.userId)
-  console.log('projects', projects)
 
   const isOwner = profileData.userId === session?.user?.id
 
@@ -40,7 +39,7 @@ export default async function ProfilePage({
         </Link>
       </div>
       <div className='w-1/2 flex justify-center h-min'>
-        <UserCard profileData={profileData} />
+        <UserCard profileData={profileData} isOwner={isOwner} />
       </div>
       <div className='w-full flex justify-center content-start gap-4 flex-wrap overflow-y-auto'>
         {projects.map((project) => (
