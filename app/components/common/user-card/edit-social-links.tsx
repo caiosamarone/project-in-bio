@@ -28,7 +28,6 @@ export default function EditSocialLinks({
   const { profileId } = useParams()
 
   async function handleAddSocialLinks() {
-    console.log('handleAddSocialLinks')
     setIsSavingSocialLinks(true)
     if (!profileId) return
     await createSocialLinks({

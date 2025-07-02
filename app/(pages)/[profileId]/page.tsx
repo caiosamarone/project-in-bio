@@ -10,6 +10,7 @@ import {
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import NewProject from './components/new-project'
+import { increaseProfileVisits } from '@/app/actions/increase-profile-visits'
 
 export default async function ProfilePage({
   params,
@@ -24,9 +25,13 @@ export default async function ProfilePage({
 
   const session = await auth()
 
-  const projects = await getProfileProjects(profileData.userId)
+  const projects = await getProfileProjects(profileId)
 
   const isOwner = profileData.userId === session?.user?.id
+
+  if (!isOwner) {
+    await increaseProfileVisits(profileId)
+  }
 
   return (
     <div className='relative h-screen flex p-20 overflow-hidden'>
@@ -50,11 +55,13 @@ export default async function ProfilePage({
             img={`https://res.cloudinary.com/derq27tar/image/upload/v1747514883/${project.imagePath}`}
           />
         ))}
-        {isOwner && <NewProject profileId={profileData.userId} />}
+        {isOwner && <NewProject profileId={profileId} />}
       </div>
-      <div className='absolute bottom-4 right-0 left-0 w-min mx-auto'>
-        <TotalVisits />
-      </div>
+      {isOwner && (
+        <div className='absolute bottom-4 right-0 left-0 w-min mx-auto'>
+          <TotalVisits totalVisits={profileData.totalVisits} />
+        </div>
+      )}
     </div>
   )
 }
