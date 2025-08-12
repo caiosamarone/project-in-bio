@@ -32,7 +32,6 @@ export function useStripe() {
       })
 
       const data = await response.json()
-      console.log('Stripe session data:', data)
       await stripe?.redirectToCheckout({
         sessionId: data.sessionId,
       })
