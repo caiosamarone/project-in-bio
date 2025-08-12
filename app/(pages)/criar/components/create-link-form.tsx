@@ -5,15 +5,17 @@ import { verifyProfile } from '@/app/actions/verify-profile'
 import Button from '@/app/components/ui/button'
 import TextInput from '@/app/components/ui/text-input'
 import { sanitizeLink } from '@/app/lib/utils'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 export default function CreateLinkForm() {
   const router = useRouter()
 
+  const searchParams = useSearchParams()
+
   const [error, setError] = useState('')
-  const [link, setLink] = useState('')
+  const [link, setLink] = useState(sanitizeLink(searchParams.get('link') || ''))
 
   function handleLinkChange(e: ChangeEvent<HTMLInputElement>) {
     setLink(sanitizeLink(e.target.value))
