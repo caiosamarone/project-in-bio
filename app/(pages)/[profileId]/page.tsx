@@ -49,6 +49,8 @@ export default async function ProfilePage({
       <div className='w-full flex justify-center content-start gap-4 flex-wrap overflow-y-auto'>
         {projects.map((project) => (
           <ProjectCard
+            description={project.projectDescription}
+            name={project.projectName}
             key={project.id}
             project={project}
             isOwner={isOwner}

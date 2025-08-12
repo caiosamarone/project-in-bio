@@ -34,7 +34,7 @@ export default async function UserCard({
           <h3 className='text-3xl font-bold min-w-0 overflow-hidden'>
             {profileData?.name || 'Caio Mendes'}
           </h3>
-          {isOwner && <EditUserCard />}
+          {isOwner && <EditUserCard profileData={profileData} />}
         </div>
         <p className='opacity-40'>
           {profileData?.description || 'Eu faço produtos para internet'}

@@ -20,13 +20,17 @@ export default function EditUserCard({
 }: {
   profileData?: ProfileData
 }) {
+  console.log(profileData, 'profileData')
   const router = useRouter()
   const { profileId } = useParams()
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isSavingProfile, setIsSavingProfile] = useState(false)
 
-  const [profilePic, setProfilePic] = useState<string | null>(null)
+  const [profilePic, setProfilePic] = useState<string | null>(
+    `https://res.cloudinary.com/derq27tar/image/upload/v1747514883/${profileData?.imagePath}` ||
+      null
+  )
   const [yourName, setYourName] = useState(profileData?.name || '')
   const [yourDescription, setYourDescription] = useState(
     profileData?.description || ''
