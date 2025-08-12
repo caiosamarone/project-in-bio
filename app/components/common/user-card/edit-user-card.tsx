@@ -20,7 +20,6 @@ export default function EditUserCard({
 }: {
   profileData?: ProfileData
 }) {
-  console.log(profileData, 'profileData')
   const router = useRouter()
   const { profileId } = useParams()
 

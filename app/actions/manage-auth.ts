@@ -11,5 +11,5 @@ export async function manageAuth() {
     })
   }
 
-  return await signOut()
+  return await signOut({ redirectTo: '/' })
 }

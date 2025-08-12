@@ -20,9 +20,8 @@ export async function POST(req: NextRequest) {
       case 'checkout.session.completed':
         // Usuario completou o checkout - assinatura ou pagamento unico
         if (event.data.object.payment_status === 'paid') {
-          console.log('PAID')
           const userId = event.data.object.client_reference_id
-          console.log('User ID:', userId)
+
           if (userId) {
             await db.collection('users').doc(userId).update({
               isSubscribed: true,

@@ -61,7 +61,6 @@ export async function POST(req: Request) {
     client_reference_id: userId,
     metadata,
   })
-  console.log('Stripe session created:', session.id)
 
   return NextResponse.json({
     sessionId: session.id,

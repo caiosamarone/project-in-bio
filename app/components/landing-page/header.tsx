@@ -8,7 +8,6 @@ export default async function Header() {
   const session = await auth()
 
   const profileId = await getProfileId(session?.user?.id as string)
-  console.log(profileId)
 
   return (
     <div className='absolute top-0 left-0 right-0 max-w-7xl mx-auto flex items-center justify-between py-10'>
