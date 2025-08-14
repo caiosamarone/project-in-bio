@@ -11,6 +11,17 @@ import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import NewProject from './components/new-project'
 import { increaseProfileVisits } from '@/app/actions/increase-profile-visits'
+import { Metadata } from 'next'
+import { getSEOTags } from '@/app/lib/seo'
+
+export const metadata: Metadata = getSEOTags({
+  appName: 'ProjectInBio',
+  appDescription:
+    'ProjectInBio - Seus projetos e redes sociais em um único link',
+  keywords: ['ProjectInBio', 'projetos', 'redes sociais', 'link'],
+  appDomain: 'https://micro-saas-course-projectinbio-bice.vercel.app/',
+  canonicalUrlRelative: '/',
+})
 
 export default async function ProfilePage({
   params,

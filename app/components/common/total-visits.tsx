@@ -8,7 +8,7 @@ export default async function TotalVisits({
   showBar = false,
 }: {
   totalVisits?: number
-  showBar: boolean
+  showBar?: boolean
 }) {
   const session = await auth()
   return (
