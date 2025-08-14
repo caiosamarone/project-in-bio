@@ -1,4 +1,5 @@
 import { db } from '@/app/lib/firebase'
+import { resend } from '@/app/lib/resend'
 import stripe from '@/app/lib/stripe'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
@@ -45,7 +46,14 @@ export async function POST(req: NextRequest) {
 
           if (hostedVoucherUrl) {
             const userEmail = event.data.object.customer_details?.email
-            console.log('Enviar email para o cliente com o boleto', userEmail)
+            if (userEmail) {
+              resend.emails.send({
+                from: 'onboarding@resend.dev',
+                to: userEmail,
+                subject: 'Boleto para pagamento',
+                text: `Aqui está o seu boleto ${hostedVoucherUrl}`,
+              })
+            }
           }
         }
 
